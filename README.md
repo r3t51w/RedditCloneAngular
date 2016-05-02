@@ -1,4 +1,4 @@
 # RedditCloneAngularRails
 Reddit Clone using Angular and Ruby on Rails
 
-Testing 2
+Testing attempt 2
