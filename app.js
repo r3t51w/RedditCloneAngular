@@ -1,4 +1,5 @@
 angular.module('redditClone',['ui.router'])
+//routing instructions
 .config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -8,9 +9,15 @@ angular.module('redditClone',['ui.router'])
       url: '/home',
       templateUrl:'/home.html',
       controller:'MainCtrl'
+    })
+    .state('posts',{
+      url: '/posts/{id}',
+      templateUrl: '/posts.html',
+      controller: 'PostsCtrl'
     });
   $urlRouterProvider.otherwise('home');
 }])
+//factory used as a data store
 .factory('posts', [function(){
   var o={
     posts: [
@@ -25,12 +32,14 @@ angular.module('redditClone',['ui.router'])
   };
   return o;
 }])
+//Controller for main page
 .controller('MainCtrl',[
 '$scope','posts',
 function($scope,posts){
   $scope.test = "Post List";
   $scope.posts = posts.posts
   /*[
+  //sample data
     {title: "Post 1", upvotes: 10},
     {title: "Post 2", upvotes: 7},
     {title: "Post 3", upvotes: 9},
@@ -45,6 +54,10 @@ function($scope,posts){
         title: $scope.title,
         upvotes: 0,
         link: $scope.link,
+        comments: [
+          {author: 'Tom', body:'That sounds about right', upvotes: 0},
+          {author: 'Doe', body: 'Great idea!', upvotes: 0}
+        ]
       });
       $scope.title='';
       $scope.link='';
@@ -52,4 +65,12 @@ function($scope,posts){
   $scope.incrementUpvotes= function(post){
     post.upvotes += 1;
   };
-}]);
+}])
+// Post Controller
+.controller('PostsCtrl',[
+  '$scope',
+  '$stateParams',
+  'posts',
+  function($scope, $stateParams, posts){
+    $scope.post= posts.posts[$stateParams.id];
+}])
