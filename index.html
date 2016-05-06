@@ -2,27 +2,32 @@
   <head>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <script src="app.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
   <!-- -->
-  <body ng-app="redditClone" ng-controller="MainCtrl">
-    <div class='title'>
-      {{test}}
+  <body ng-app="redditClone">
+    <ui-view></ui-view>
+  <script type='text/ng-template' id='/home.html'>
+    <div class='page-header'>
+      <h1>
+        {{test}}
+      </h1>
+      <br>
     </div>
-    <br>
     <div class='well'>
-      <div ng-repeat = "post in posts | orderBy: '-upvotes'" class='table'>
-        <span ng-click='incrementUpvotes(post)' class='glyphicon glyphicon-thumbs-up'></span>
-        <a ng-show='post.link' href='{{post.link}}'>
-          {{post.title}}
-        </a>
-        <span ng-hide='post.link'>
-          {{post.title}}
-        </span>
-        - upvotes: {{post.upvotes}}
-      </div>
+        <div ng-repeat = "post in posts | orderBy: '-upvotes'" class='table'>
+          <span ng-click='incrementUpvotes(post)' class='glyphicon glyphicon-thumbs-up'></span>
+          <a ng-show='post.link' href='{{post.link}}'>
+            {{post.title}}
+          </a>
+          <span ng-hide='post.link'>
+            {{post.title}}
+          </span>
+          - upvotes: {{post.upvotes}}
+        </div>
     </div>
     <form ng-submit='addPost()' class='form-group'>
       <div class='title'>Title</div>
@@ -33,5 +38,6 @@
       <br>
       <button type='submit' class='btn btn-info'>Post</button>
     </form>
+  </script>
   </body>
 </html>
