@@ -18,7 +18,7 @@
       </h1>
       <br>
     </div>
-    <a href='#/posts/{{$index}}'>Comments</a>
+
     <div class='well'>
         <div ng-repeat = "post in posts | orderBy: '-upvotes'" class='table'>
           <span ng-click='incrementUpvotes(post)' class='glyphicon glyphicon-thumbs-up'></span>
@@ -29,6 +29,7 @@
             {{post.title}}
           </span>
           - upvotes: {{post.upvotes}}
+          <a href='#/posts/{{$index}}'>Comments</a>
         </div>
     </div>
     <form ng-submit='addPost()' class='form-group'>
