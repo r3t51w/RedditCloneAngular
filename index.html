@@ -29,7 +29,7 @@
             {{post.title}}
           </span>
           - upvotes: {{post.upvotes}}
-          <a href='#/posts/{{$index}}'>Comments</a>
+          <a href='#/posts/{{$index}}'>Comments: {{post.comments.length}}</a>
         </div>
     </div>
     <form ng-submit='addPost()' class='form-group'>
@@ -44,7 +44,7 @@
   </script>
   <!--Template for comments page-->
   <script type='text/ng-template' id='/posts.html'>
-    <a href='#/home'>Home</a>
+    <a href='#/home'>Back to home</a>
     <div>
       <h2>
         <a ng-show='post.link' href="{{post.link}}">
