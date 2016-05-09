@@ -57,7 +57,12 @@
       <span class='comment'>{{comment.body}}</span>
     </div>
     <form ng-submit='addComment()'>
-      <h3></h3>
+      <h3>Add a new comment</h3>
+      <div class='form-group'>
+        <input type='text' class='form-control'
+        placeholder='Comment' ng-model='body'></input>
+      </div>
+      <button type='submit' class='btn btn-info'>Post</button>
     </form>
   </script>
   </body>
